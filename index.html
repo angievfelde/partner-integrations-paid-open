@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner integrations — paid open accounts</title>
+  <meta name="description" content="707 paid-open When I Work accounts have authorized at least one of 20 partner integrations. 87 called that integration's API in the last 90 days. Snapshot 2026-10-08.">
+  <meta property="og:title" content="Partner integrations — paid open accounts">
+  <meta property="og:description" content="707 paid-open accounts connected · 87 with API calls in 90 days · snapshot 2026-10-08">
+  <meta property="og:type" content="article">
+  <meta name="author" content="WIW Superset Analytics">
+  <style>
+    :root {
+      --text: #202124;
+      --text-secondary: #5f6368;
+      --border: #dadce0;
+      --header-bg: #f8f9fa;
+      --callout-bg: #e8f0fe;
+      --callout-border: #1a73e8;
+      --note-bg: #fef7e0;
+      --note-border: #f9ab00;
+      --bar: #1a73e8;
+      --bar-track: #e8f0fe;
+      --link: #1a73e8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 16px 64px;
+      background: #f0f0f0;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 48px 40px 64px;
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 22pt;
+      font-weight: 400;
+      line-height: 1.3;
+      margin: 0 0 8px;
+    }
+
+    .meta {
+      color: var(--text-secondary);
+      font-size: 10pt;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: 14pt;
+      font-weight: 400;
+      margin: 32px 0 12px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p { margin: 0 0 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 8px;
+      font-size: 10pt;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--header-bg);
+      font-weight: 600;
+    }
+
+    td.num, th.num { text-align: right; white-space: nowrap; }
+
+    tr.hidden { display: none; }
+
+    .callout {
+      background: var(--callout-bg);
+      border-left: 4px solid var(--callout-border);
+      padding: 12px 16px;
+      margin: 16px 0 8px;
+    }
+
+    .note {
+      background: var(--note-bg);
+      border-left: 4px solid var(--note-border);
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 10.5pt;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 8px 0 8px;
+    }
+
+    .stat-card {
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+    }
+
+    .stat-card .label {
+      font-size: 9.5pt;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .stat-card .value {
+      font-size: 22pt;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--link);
+    }
+
+    .bars { margin: 8px 0 4px; }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 220px 1fr 56px;
+      gap: 10px;
+      align-items: center;
+      margin: 6px 0;
+      font-size: 10pt;
+    }
+
+    .bar-track {
+      background: var(--bar-track);
+      height: 14px;
+    }
+
+    .bar-fill {
+      background: var(--bar);
+      height: 14px;
+    }
+
+    .bar-value { text-align: right; font-variant-numeric: tabular-nums; }
+
+    .filters { margin: 8px 0 4px; }
+
+    .filters button {
+      font: inherit;
+      font-size: 10pt;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      margin: 0 6px 6px 0;
+      cursor: pointer;
+    }
+
+    .filters button[aria-pressed="true"] {
+      background: var(--callout-bg);
+      border-color: var(--callout-border);
+      color: var(--link);
+    }
+
+    .caption {
+      color: var(--text-secondary);
+      font-size: 9.5pt;
+      margin: 0 0 12px;
+    }
+
+    .footer {
+      margin-top: 36px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 9.5pt;
+    }
+
+    @media (max-width: 800px) {
+      .page { padding: 24px 16px 40px; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 1fr; gap: 2px; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Partner integrations on paid-open accounts</h1>
+    <p class="meta">
+      Snapshot <strong>2026-10-08</strong>.
+      Paid open means <code>ispaid = TRUE</code> and <code>isopen = TRUE</code> on
+      <code>hive.history.accountstatus</code>.
+      <code>isActive</code>, <code>last_active</code>, and <code>last_login</code> were not used.
+      A connection is a row in Monolith <code>app_logins</code> for that partner’s API application.
+      Recent use is a monolith API call on that application key from 2026-07-10 through 2026-10-08.
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">Paid open accounts</div>
+        <div class="value">37,664</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Paid open with any of these connections</div>
+        <div class="value">707</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Paid open with API calls in 90 days</div>
+        <div class="value">87</div>
+      </div>
+    </div>
+
+    <h2>Paid-open accounts connected</h2>
+    <p class="caption">Account count. Integrations with at least one paid-open connection. Source: accountstatus 2026-10-08 joined to app_logins.</p>
+    <div class="bars" aria-label="Paid-open accounts connected, by integration">
+      <div class="bar-row"><span>OnPay</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-value">337</span></div>
+      <div class="bar-row"><span>Resale AI</span><div class="bar-track"><div class="bar-fill" style="width:86.4%"></div></div><span class="bar-value">291</span></div>
+      <div class="bar-row"><span>Crew</span><div class="bar-track"><div class="bar-fill" style="width:9.8%"></div></div><span class="bar-value">33</span></div>
+      <div class="bar-row"><span>People HR</span><div class="bar-track"><div class="bar-fill" style="width:4.2%"></div></div><span class="bar-value">14</span></div>
+      <div class="bar-row"><span>Cova</span><div class="bar-track"><div class="bar-fill" style="width:3.9%"></div></div><span class="bar-value">13</span></div>
+      <div class="bar-row"><span>Approach Climbing</span><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div><span class="bar-value">10</span></div>
+      <div class="bar-row"><span>Khamu / Sapphire POS</span><div class="bar-track"><div class="bar-fill" style="width:1.8%"></div></div><span class="bar-value">6</span></div>
+      <div class="bar-row"><span>9Spokes</span><div class="bar-track"><div class="bar-fill" style="width:0.9%"></div></div><span class="bar-value">3</span></div>
+      <div class="bar-row"><span>Flow Healthcare</span><div class="bar-track"><div class="bar-fill" style="width:0.3%"></div></div><span class="bar-value">1</span></div>
+    </div>
+
+    <h2>All listed integrations</h2>
+    <div class="filters" role="group" aria-label="Filter integrations">
+      <button type="button" data-filter="all" aria-pressed="true">All 20</button>
+      <button type="button" data-filter="paid" aria-pressed="false">Paid-open connections</button>
+      <button type="button" data-filter="none" aria-pressed="false">No paid-open connections</button>
+    </div>
+    <table id="integrations">
+      <thead>
+        <tr>
+          <th>Integration</th>
+          <th>API application</th>
+          <th class="num">Paid open connected</th>
+          <th class="num">Adoption</th>
+          <th class="num">Connected, any status</th>
+          <th class="num">Paid open, API calls in 90 days</th>
+          <th>Key note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-paid="337">
+          <td>OnPay</td><td>235 OnPay</td>
+          <td class="num">337</td><td class="num">0.9%</td><td class="num">1,025</td><td class="num">75</td>
+          <td>Shared partner key</td>
+        </tr>
+        <tr data-paid="291">
+          <td>Resale AI</td><td>255 L2M LLC ResaleAI</td>
+          <td class="num">291</td><td class="num">0.8%</td><td class="num">423</td><td class="num">11</td>
+          <td>Shared partner key</td>
+        </tr>
+        <tr data-paid="33">
+          <td>Crew</td><td>3123 Crew, Inc.</td>
+          <td class="num">33</td><td class="num">0.09%</td><td class="num">395</td><td class="num">0</td>
+          <td>Shared partner key</td>
+        </tr>
+        <tr data-paid="14">
+          <td>People HR</td><td>492 PeopleHR</td>
+          <td class="num">14</td><td class="num">0.04%</td><td class="num">80</td><td class="num">1</td>
+          <td>Shared partner key</td>
+        </tr>
+        <tr data-paid="13">
+          <td>Cova</td><td>3125 Cova POS</td>
+          <td class="num">13</td><td class="num">0.03%</td><td class="num">42</td><td class="num">0</td>
+          <td>Shared key only; store-specific keys excluded</td>
+        </tr>
+        <tr data-paid="10">
+          <td>Approach Climbing</td><td>3424 Approach Climbing, 3650 ApproachApp</td>
+          <td class="num">10</td><td class="num">0.03%</td><td class="num">25</td><td class="num">0</td>
+          <td>Both Approach keys combined</td>
+        </tr>
+        <tr data-paid="6">
+          <td>Khamu Solutions / Sapphire POS</td><td>2805 Khamu Solutions, LLC 2765551</td>
+          <td class="num">6</td><td class="num">0.02%</td><td class="num">24</td><td class="num">0</td>
+          <td>No application named Sapphire POS</td>
+        </tr>
+        <tr data-paid="3">
+          <td>9Spokes</td><td>1167, 2189, 2534, 2815</td>
+          <td class="num">3</td><td class="num">0.01%</td><td class="num">21</td><td class="num">0</td>
+          <td>Keys still enabled; names say expired</td>
+        </tr>
+        <tr data-paid="1">
+          <td>Flow Healthcare</td><td>3405 Flow Healthcare</td>
+          <td class="num">1</td><td class="num">&lt;0.01%</td><td class="num">2</td><td class="num">0</td>
+          <td>Key owned by account 3488497</td>
+        </tr>
+        <tr data-paid="0">
+          <td>GoCo</td><td>1510 GoCo.IO #2 API Key</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">16</td><td class="num">0</td>
+          <td>Connections exist; none are paid open</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Tenzo</td><td>2784, 3850 TenzoPartner</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">3</td><td class="num">0</td>
+          <td>Both keys disabled</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Abaq.us (MyGeoTracking)</td><td>4034 AllGeo, 3977 Abaqus</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>Keys exist; no app logins</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Aluvii</td><td>3098 Aluvii integration developer ID</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>Developer key; no app logins</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Braintree</td><td>1015 Support Schedule Widget</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>Other Braintree keys are disabled</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Paychex Flex (API)</td><td>3636 PaychexAPI</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>Key enabled; no app logins or 90-day API calls</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Paylocity</td><td>3794 PaylocityPartner</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>Key enabled; no app logins or 90-day API calls</td>
+        </tr>
+        <tr data-paid="0">
+          <td>SimplePay</td><td>338 SimplePay</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>Key disabled</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Xola</td><td>3778 XolaPartner</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>Key disabled</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Earnin</td><td>No matching application</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>No applications row</td>
+        </tr>
+        <tr data-paid="0">
+          <td>Gig Wage</td><td>No matching application</td>
+          <td class="num">0</td><td class="num">0%</td><td class="num">0</td><td class="num">0</td>
+          <td>No applications row</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="caption">One paid-open account is connected to two integrations, so the paid-open column sums to 708 and the distinct total is 707. Adoption is paid-open connected accounts divided by 37,664 paid-open accounts.</p>
+
+    <h2>Plan size of paid-open connected accounts</h2>
+    <p class="caption">Account count by <code>plansize</code> bucket. Source: accountstatus on 2026-10-08.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Integration</th>
+          <th class="num">1–10</th>
+          <th class="num">11–25</th>
+          <th class="num">26–50</th>
+          <th class="num">51–100</th>
+          <th class="num">101–200</th>
+          <th class="num">201+</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>OnPay</td><td class="num">166</td><td class="num">112</td><td class="num">44</td><td class="num">9</td><td class="num">5</td><td class="num">1</td></tr>
+        <tr><td>Resale AI</td><td class="num">12</td><td class="num">142</td><td class="num">108</td><td class="num">20</td><td class="num">7</td><td class="num">2</td></tr>
+        <tr><td>Crew</td><td class="num">6</td><td class="num">10</td><td class="num">7</td><td class="num">7</td><td class="num">1</td><td class="num">2</td></tr>
+        <tr><td>People HR</td><td class="num">0</td><td class="num">1</td><td class="num">6</td><td class="num">4</td><td class="num">3</td><td class="num">0</td></tr>
+        <tr><td>Cova</td><td class="num">4</td><td class="num">5</td><td class="num">2</td><td class="num">2</td><td class="num">0</td><td class="num">0</td></tr>
+        <tr><td>Approach Climbing</td><td class="num">0</td><td class="num">6</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+        <tr><td>Khamu / Sapphire POS</td><td class="num">0</td><td class="num">3</td><td class="num">1</td><td class="num">2</td><td class="num">0</td><td class="num">0</td></tr>
+        <tr><td>9Spokes</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">0</td></tr>
+        <tr><td>Flow Healthcare</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Keys with no paid-open connections.</strong>
+      Earnin and Gig Wage have no applications row. Paychex Flex (3636) and Paylocity (3794) are enabled and have no app_logins rows and no API calls in the last 90 days. SimplePay and Xola keys are disabled. Abaq.us, Aluvii, and Braintree have keys and no app logins.
+    </div>
+
+    <h2>How accounts were matched</h2>
+    <div class="callout">
+      <p>Partner names were matched to <code>wheniwork_app2.applications</code> by name, developer email, and known partner keys. Paid open was checked on Athena <code>accountstatus</code> for those account ids. The 90-day figure is distinct <code>accountid</code> on <code>hive.api.dailyactivity</code> for the same application ids.</p>
+      <p>Query source: Athena accountstatus + hive.api.dailyactivity, Monolith applications and app_logins. Cova counts use the shared Cova POS key only.</p>
+    </div>
+
+    <p class="footer">WIW Superset usage analytics · snapshot storedat = 2026-10-08 · paid open accounts 37,664</p>
+  </main>
+  <script>
+    const buttons = document.querySelectorAll(".filters button");
+    const rows = document.querySelectorAll("#integrations tbody tr");
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-filter");
+        buttons.forEach((item) => item.setAttribute("aria-pressed", item === button ? "true" : "false"));
+        rows.forEach((row) => {
+          const paid = Number(row.getAttribute("data-paid"));
+          const show = filter === "all" || (filter === "paid" && paid > 0) || (filter === "none" && paid === 0);
+          row.classList.toggle("hidden", !show);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
